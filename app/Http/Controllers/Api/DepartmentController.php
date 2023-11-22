@@ -39,7 +39,7 @@ class DepartmentController extends ApiController
         return $resource->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function getOne(int $id): JsonResponse
+    public function view(int $id): JsonResponse
     {
         $department = $this->service->getOneById($id);
 

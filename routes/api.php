@@ -1,19 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('department')->group(function () {
+    Route::resource('/', DepartmentController::class)->only(['index', 'store', 'view']);
+});
+Route::prefix('worker')->group(function () {
+    Route::resource('/', WorkerController::class)->only(['index', 'store']);
+    Route::patch('/attach', [WorkerController::class, 'addWorkerToDepartment']);
 });
