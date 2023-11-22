@@ -2,18 +2,22 @@
 
 namespace App\Http\Resources\Worker;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class WorkerCollection extends ResourceCollection
 {
+    public $collects = WorkerResource::class;
+
     /**
      * Transform the resource collection into an array.
      *
-     * @return array<int|string, mixed>
+     * @param Request $request
+     * @return Arrayable
      */
-    public function toArray(Request $request): array
+    public function toArray(Request $request): Arrayable
     {
-        return parent::toArray($request);
+        return $this->collection;
     }
 }

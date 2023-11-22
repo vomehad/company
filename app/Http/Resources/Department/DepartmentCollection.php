@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Resources\Branch;
+namespace App\Http\Resources\Department;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BranchCollection extends ResourceCollection
+class DepartmentCollection extends ResourceCollection
 {
-    public $collects = BranchResource::class;
+    public $collects = DepartmentResource::class;
 
     /**
      * Transform the resource collection into an array.

@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $name
  * @property int $position_id
- * @property int $branch_id
+ * @property int $department_id
  * @property bool $active
  *
  * @property Position $position
- * @property Branch $branch
+ * @property Department $department
  */
 class Worker extends Model
 {
@@ -23,9 +23,15 @@ class Worker extends Model
 
     protected $table = 'workers';
 
-    public function branch(): BelongsTo
+    protected $fillable = [
+        'name',
+        'position_id',
+        'department_id',
+    ];
+
+    public function department(): BelongsTo
     {
-        return $this->belongsTo(Branch::class, 'branch_id', 'id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 
     public function position(): BelongsTo

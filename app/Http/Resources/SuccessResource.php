@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Worker;
+namespace App\Http\Resources;
 
-use App\Models\Worker;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WorkerResource extends JsonResource
+class SuccessResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,10 @@ class WorkerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        /** @var Worker $this */
+        /** @var Department $this */
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'position' => $this->position->name,
+            'success' => true,
+            'message' => $this->name,
         ];
     }
 }
