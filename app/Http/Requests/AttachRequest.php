@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class AttachRequest extends FormRequest
+class AttachRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +20,8 @@ class AttachRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'worker_id' => 'required|int|exists:workers,id',
-            'department_id' => 'required|int|exists:departments,id',
+            'worker_id' => 'required|exists:workers,id',
+            'department_id' => 'required|exists:departments,id',
         ];
     }
 }

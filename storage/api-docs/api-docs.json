@@ -1,0 +1,450 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "EdgeQ API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api"
+        }
+    ],
+    "paths": {
+        "/department": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Список отделов",
+                "operationId": "allDepartment",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DepartmentItem"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Добавление отдела",
+                "operationId": "createDepartment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DepartmentStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Успешно создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultValidation"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/department/{id}": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Получить инфо отдела",
+                "operationId": "getDepartment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DepartmentItem"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/worker": {
+            "get": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "Список сотрудников",
+                "operationId": "allWorker",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WorkerItem"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "Добавление сотрудника",
+                "operationId": "createWorker",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WorkerStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Успешно создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultValidation"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/attach": {
+            "post": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "Добавление сотрудника к отделу",
+                "operationId": "attachWorkerToDepartment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DepartmentStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Успешно создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultValidation"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonFaultResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DepartmentItem": {
+                "title": "Отдел",
+                "description": "Инфо отдела",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "description": "Название отдела",
+                        "type": "string",
+                        "example": "Cats"
+                    }
+                },
+                "type": "object"
+            },
+            "DepartmentStoreRequest": {
+                "title": "Запрос для создания отдела",
+                "description": "Создание нового отдела",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Имя отдела",
+                        "type": "string",
+                        "example": "Wolfs"
+                    }
+                },
+                "type": "object"
+            },
+            "JsonFaultResponse": {
+                "title": "Ошибка",
+                "description": "Failed answer",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "format": "bool",
+                        "example": false
+                    },
+                    "message": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "JsonFaultValidation": {
+                "title": "Ошибка валидации",
+                "description": "Массив сообщений об ошибках",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "format": "bool",
+                        "example": false
+                    },
+                    "errors": {
+                        "type": "array",
+                        "format": "array",
+                        "items": {
+                            "properties": {
+                                "Название поля": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "example": "Cообщение об ошибке"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponse": {
+                "title": "success",
+                "description": "Success answer",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "format": "bool",
+                        "example": true
+                    },
+                    "message": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerAttachRequest": {
+                "title": "Запрос для добавления сотрудника к отделу",
+                "description": "Добавление сотрудника к отделу",
+                "required": [
+                    "worker_id",
+                    "department_id"
+                ],
+                "properties": {
+                    "worker_id": {
+                        "description": "ID сотрудника",
+                        "type": "string",
+                        "enum": [
+                            1,
+                            2
+                        ]
+                    },
+                    "department_id": {
+                        "description": "ID отдела",
+                        "type": "string",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerItem": {
+                "title": "Сотрудник",
+                "description": "Инфо сотрудника",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Имя сотрудника",
+                        "type": "string",
+                        "example": "Верхов Мариан Карлович"
+                    },
+                    "position_id": {
+                        "type": "integer",
+                        "enum": [
+                            1,
+                            2
+                        ]
+                    },
+                    "department_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerStoreRequest": {
+                "title": "Запрос для создания сотрудника",
+                "description": "Создание нового сотрудника",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Имя сотрудника",
+                        "type": "string",
+                        "example": "Верхов Мариан Карлович"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

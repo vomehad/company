@@ -19,6 +19,7 @@ class Position extends Model
     use HasFactory;
 
     protected $table = 'dict_positions';
+    public $timestamps = false;
 
     public function workers(): HasMany
     {

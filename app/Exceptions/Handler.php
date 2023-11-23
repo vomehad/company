@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +28,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e): JsonResponse
+    {
+        return match (true) {
+            // TODO тут перехватывать исключения для отдачи в json
+            default => $this->getFaultResponse($e, $e->getCode()),
+        };
+    }
+
+    private function getFaultResponse(Throwable $e, string $code = Response::HTTP_BAD_GATEWAY): JsonResponse
+    {
+        return (new FaultResponse($e->getMessage()))->response()->setStatusCode($code);
     }
 }
